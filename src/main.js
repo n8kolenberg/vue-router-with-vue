@@ -10,7 +10,18 @@ Vue.use(VueRouter);
 //After registering vue-router, I can pass my routes to the VueRouter
 const router = new VueRouter({
   routes /*ES6 syntax -> normally this would be routes: routes */,
-  mode: 'history' //This removes the need for the # in the url - default mode is hash
+  mode: 'history', //This removes the need for the # in the url - default mode is hash
+  //The following is some mindf%ckery related to scrolling behavior based on anchors on the pages, but since 
+  //we don't have a data anchor on the user edit page, this doesn't work
+  scrollBehavior(to, from, savedPosition) {
+    if(savedPosition) {
+      return savedPosition;
+    }
+    if(to.hash) {
+      return {selector: to.hash};
+    }
+    return {x: 0, y: 700};
+  }
 }); //After passing the routes to VueRouter, I can register them in the Vue instance
 
 

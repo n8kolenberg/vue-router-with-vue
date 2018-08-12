@@ -10,7 +10,8 @@
         <router-link 
             tag="button" 
             class="btn btn-info" 
-            :to="{ name: 'userEdit', params: $route.params.id, query: {locale: 'en', q: 100 } }">Edit</router-link>
+            :to="link">Edit</router-link>
+
         <router-link tag="button" class="btn btn-info" to="/user">Go to User overview</router-link>
 
     </div>
@@ -21,7 +22,12 @@
 export default {
     data() {
         return {
-
+            link: { 
+                name: 'userEdit', 
+                params: {id: this.$route.params.id}, 
+                query: {locale: 'en', q: 100 },
+                hash: '#data'
+            }
         }
     },
 
