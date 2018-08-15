@@ -25,6 +25,19 @@ const router = new VueRouter({
 }); //After passing the routes to VueRouter, I can register them in the Vue instance
 
 
+//Execute this block of code before each routing action
+//Maybe use this only for generic checks as it will be for each route
+router.beforeEach((to, from, next) => {
+  /*to is the route you're trying to access
+  from is the route you're coming from
+   */
+  console.log("Global beforeEach()");
+  //You have to add next() to allow the action routing to continue, otherwise it's assumed it's not allowed to continue
+  //And it will abort and not allow the route to be accessed by the user - you can also use next(false) for this
+  next()
+}); 
+
+
 new Vue({
   el: '#app',
   router, /* Now that it's registered, I need to render it and I can do that with <router-view></router-view> in App.vue*/

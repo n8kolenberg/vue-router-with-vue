@@ -35,7 +35,12 @@ export const routes = [
     /*Child components of User ->*/
         children: [
             {path: ""/*This will be appended to /user/ */, component: UserStart},
-            {path: ":id", component: UserDetail},
+            {
+                path: ":id", component: UserDetail, props: true, name: 'userDetail', beforeEnter: (to, from, next) => {
+                    console.log("beforeEach() Inside Route Setup: routes.js");
+                    next();
+                } 
+        },
             {path: ":id/edit", component: UserEdit, name: 'userEdit' /*Named Routes*/}
         ]
     },
